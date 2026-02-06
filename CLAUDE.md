@@ -5,7 +5,11 @@
 **Layer**: 0 (Universal)
 **Position**: sub_layer_0_01_ai_system
 **Type**: Git submodule
-**Role**: AI language and compiler system
+**Role**: **PRIMARY AI SYSTEM** - The AI language and compiler system used for most everything
+
+## Importance
+
+**This is the main AI system we use.** AALang and the gab compiler are central to how we work with AI. When working on AI-related tasks, this system is the foundation.
 
 ## Repository Information
 
