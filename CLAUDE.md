@@ -18,9 +18,11 @@
 - **Every layer** (layer_0, layer_1, layer_-1, etc.)
 - **Every stage** (01-11: request_gathering through archives)
 - **Every sub_layer** (knowledge, principles, rules, protocols, setup)
-- **Every sub_stage** and nested structure
+- **Every sub_stage**
+- **Every subxn layer** (sub-sub layers, sub-sub-sub layers, any nesting depth)
+- **Every subxn stage** (sub-sub stages, sub-sub-sub stages, any nesting depth)
 
-When operating at any level of the layer-stage hierarchy, agents should understand that AALang provides the underlying AI capabilities and patterns for how work gets done.
+When operating at any level of the layer-stage hierarchy—no matter how deeply nested—agents should understand that AALang provides the underlying AI capabilities and patterns for how work gets done.
 
 ## Repository Information
 
