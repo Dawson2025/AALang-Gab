@@ -11,6 +11,17 @@
 
 **This is the main AI system we use.** AALang and the gab compiler are central to how we work with AI. When working on AI-related tasks, this system is the foundation.
 
+## Integration with Layer-Stage System
+
+**AALang is the primary way agents work within our system.** It is integrated throughout:
+
+- **Every layer** (layer_0, layer_1, layer_-1, etc.)
+- **Every stage** (01-11: request_gathering through archives)
+- **Every sub_layer** (knowledge, principles, rules, protocols, setup)
+- **Every sub_stage** and nested structure
+
+When operating at any level of the layer-stage hierarchy, agents should understand that AALang provides the underlying AI capabilities and patterns for how work gets done.
+
 ## Repository Information
 
 | Property | Value |
