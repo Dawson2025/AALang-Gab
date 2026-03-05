@@ -17,7 +17,16 @@
       "@id": "ex:CommonRuntimeBehaviors",
       "@type": "RuntimeInstruction",
       "purpose": "Common runtime behaviors that all personas must follow",
-      "appliesTo": ["ex:ClarificationPersona1", "ex:ClarificationPersona2", "ex:DiscussionPersona1", "ex:DiscussionPersona2", "ex:FormalizationPersona1", "ex:FormalizationPersona2", "ex:GenerationPersona1", "ex:GenerationPersona2"],
+      "appliesTo": [
+        "ex:ClarificationPersona1",
+        "ex:ClarificationPersona2",
+        "ex:DiscussionPersona1",
+        "ex:DiscussionPersona2",
+        "ex:FormalizationPersona1",
+        "ex:FormalizationPersona2",
+        "ex:GenerationPersona1",
+        "ex:GenerationPersona2"
+      ],
       "behaviors": [
         {
           "@id": "ex:DebugModeCheck",
@@ -49,7 +58,10 @@
           "@id": "ex:ProductNameIdentification",
           "name": "Product Name Identification",
           "when": "During Clarification Mode when product name can be determined",
-          "appliesTo": ["ex:ClarificationPersona1", "ex:ClarificationPersona2"],
+          "appliesTo": [
+            "ex:ClarificationPersona1",
+            "ex:ClarificationPersona2"
+          ],
           "instruction": "Identify product name from user description and send state update message to ex:ProductNameStatePersona to store product name. Product name should be a filesystem-safe identifier (e.g., 'service-mesh-simulator', 'number-guessing-game'). This name will be used for the build log filename: '{productName}/{productName}-build-log.md' and debug filename: '{productName}/{productName}-debug.md'",
           "note": "Product name should be identified early in Clarification Mode and stored for use throughout the building process."
         }
@@ -59,7 +71,16 @@
       "@id": "ex:CommonErrorHandling",
       "@type": "RuntimeInstruction",
       "purpose": "Common error handling patterns for all personas",
-      "appliesTo": ["ex:ClarificationPersona1", "ex:ClarificationPersona2", "ex:DiscussionPersona1", "ex:DiscussionPersona2", "ex:FormalizationPersona1", "ex:FormalizationPersona2", "ex:GenerationPersona1", "ex:GenerationPersona2"],
+      "appliesTo": [
+        "ex:ClarificationPersona1",
+        "ex:ClarificationPersona2",
+        "ex:DiscussionPersona1",
+        "ex:DiscussionPersona2",
+        "ex:FormalizationPersona1",
+        "ex:FormalizationPersona2",
+        "ex:GenerationPersona1",
+        "ex:GenerationPersona2"
+      ],
       "commonPatterns": [
         "If file operations fail (directory creation, file writing), inform user of the error but continue processing - do not halt workflow",
         "If build log file cannot be created or written, inform user and continue with in-memory logging",
@@ -72,7 +93,10 @@
       "@id": "ex:GenerationModeRuntimeBehaviors",
       "@type": "RuntimeInstruction",
       "purpose": "Additional runtime behaviors specific to Generation Mode personas",
-      "appliesTo": ["ex:GenerationPersona1", "ex:GenerationPersona2"],
+      "appliesTo": [
+        "ex:GenerationPersona1",
+        "ex:GenerationPersona2"
+      ],
       "behaviors": [
         {
           "@id": "ex:GenerationDebugFileCheck",
@@ -100,7 +124,14 @@
       "@id": "ex:ModeTransitionValidation",
       "@type": "RuntimeInstruction",
       "purpose": "Protocol for validating mode transitions before proceeding",
-      "appliesTo": ["ex:ClarificationPersona1", "ex:ClarificationPersona2", "ex:DiscussionPersona1", "ex:DiscussionPersona2", "ex:FormalizationPersona1", "ex:FormalizationPersona2"],
+      "appliesTo": [
+        "ex:ClarificationPersona1",
+        "ex:ClarificationPersona2",
+        "ex:DiscussionPersona1",
+        "ex:DiscussionPersona2",
+        "ex:FormalizationPersona1",
+        "ex:FormalizationPersona2"
+      ],
       "process": [
         "1. Before attempting to transition to next mode, check mode-specific transition requirements",
         "2. For Clarification → Discussion: Send state request message to ex:UnderstandingIndicatorsStatePersona to check overallConfidence. Follow ex:SemanticFilteringProtocol (see message-protocol.jsonld - read complete protocol definition and execute all steps) to extract value. If overallConfidence < 0.8, do NOT transition - continue clarification rounds",
@@ -116,10 +147,19 @@
       "@id": "ex:RuntimeBehaviorReference",
       "@type": "RuntimeInstruction",
       "purpose": "Instructions for how personas should reference and follow runtime behaviors",
-      "appliesTo": ["ex:ClarificationPersona1", "ex:ClarificationPersona2", "ex:DiscussionPersona1", "ex:DiscussionPersona2", "ex:FormalizationPersona1", "ex:FormalizationPersona2", "ex:GenerationPersona1", "ex:GenerationPersona2"],
+      "appliesTo": [
+        "ex:ClarificationPersona1",
+        "ex:ClarificationPersona2",
+        "ex:DiscussionPersona1",
+        "ex:DiscussionPersona2",
+        "ex:FormalizationPersona1",
+        "ex:FormalizationPersona2",
+        "ex:GenerationPersona1",
+        "ex:GenerationPersona2"
+      ],
       "instruction": "When persona responsibilities reference runtime behaviors (e.g., 'follow ex:DebugModeCheck'), personas must: 1. Read the complete behavior definition from gab-runtime.jsonld, 2. Execute all steps in the behavior definition, 3. Follow the behavior exactly as specified, 4. If behavior definition is not available or unclear, use semantic understanding to infer correct behavior from behavior name and context, 5. Runtime behaviors are mandatory - they cannot be skipped or modified.",
       "note": "Runtime behaviors are defined once in gab-runtime.jsonld and referenced by all personas. This ensures consistent behavior across all personas while avoiding duplication."
     }
-  ]
+  ],
+  "file_id": "76a31f44-27fb-455f-9e6f-d124d608a84b"
 }
-

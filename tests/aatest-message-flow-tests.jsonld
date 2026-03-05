@@ -52,7 +52,10 @@
         },
         {
           "type": "followsSequence",
-          "expected": ["ProductAnalyzerActor sends message", "TestGapAnalyzerActor receives message"],
+          "expected": [
+            "ProductAnalyzerActor sends message",
+            "TestGapAnalyzerActor receives message"
+          ],
           "actual": "TO_BE_EVALUATED"
         }
       ]
@@ -146,7 +149,11 @@
         },
         {
           "type": "followsSequence",
-          "expected": ["TestNeedEvaluationMode active", "Transition triggered", "TestGenerationMode active"],
+          "expected": [
+            "TestNeedEvaluationMode active",
+            "Transition triggered",
+            "TestGenerationMode active"
+          ],
           "actual": "TO_BE_EVALUATED"
         }
       ]
@@ -392,7 +399,11 @@
         },
         {
           "type": "followsSequence",
-          "expected": ["TestGenerationMode active", "Transition triggered", "TestExecutionMode active"],
+          "expected": [
+            "TestGenerationMode active",
+            "Transition triggered",
+            "TestExecutionMode active"
+          ],
           "actual": "TO_BE_EVALUATED"
         }
       ]
@@ -442,7 +453,12 @@
         },
         {
           "type": "followsSequence",
-          "expected": ["TestExecutionMode active", "Execution logs verified", "Transition triggered", "TestResultReportingMode active"],
+          "expected": [
+            "TestExecutionMode active",
+            "Execution logs verified",
+            "Transition triggered",
+            "TestResultReportingMode active"
+          ],
           "actual": "TO_BE_EVALUATED"
         }
       ]
@@ -496,6 +512,6 @@
         }
       ]
     }
-  ]
+  ],
+  "file_id": "aaf21994-79e3-49d2-b03f-23fa255e0bdb"
 }
-

@@ -1,7 +1,12 @@
+---
+resource_id: "a18ee730-df3c-474c-a397-cc45149974a4"
+---
 # Test Results Report - AATest
 
+<!-- section_id: "d8fb8e9b-38ad-48a6-a558-bc0fa5b94432" -->
 ## Summary
 
+<!-- section_id: "f4b89aed-7695-4560-9cf8-2789ae14aef7" -->
 ### Overall Statistics
 
 | Metric | Value |
@@ -12,6 +17,7 @@
 | Errors | 0 |
 | Pass Rate | 90.5% |
 
+<!-- section_id: "3a6405cc-aa46-4876-9a61-f9a2774cc34b" -->
 ### Statistics by Type
 
 | Test Type | Total | Passed | Failed | Errors | Pass Rate |
@@ -20,6 +26,7 @@
 | Message Flow Tests | 10 | 9 | 1 | 0 | 90.0% |
 | Agent Workflow Tests | 7 | 6 | 1 | 0 | 85.7% |
 
+<!-- section_id: "8c143931-8c38-47b8-9319-64a88fa1dd60" -->
 ## Coverage Metrics
 
 | Metric | Coverage | Details |
@@ -31,8 +38,10 @@
 | Message Path Coverage | 25.0% | ~5 / 20 communication paths tested |
 | State Transition Coverage | 75.0% | 3 / 4 mode transitions tested |
 
+<!-- section_id: "4b01e640-3a01-4df0-8d04-b8c2198e7a8a" -->
 ## Test Results
 
+<!-- section_id: "524d64af-0340-4dda-b881-cca202672f05" -->
 ### Message Response Tests
 
 #### Test_ProductAnalyzerActor_DetermineProductFilePath_WithPath_HappyPath
@@ -279,6 +288,7 @@
 - **Priority**: 2
 - **Reason**: Test requires specific invalid reference structure that needs detailed setup
 
+<!-- section_id: "e656f378-26e1-4557-baca-97086ecae066" -->
 ### Message Flow Tests
 
 #### Test_TestNeedEvaluationMode_ProductAnalyzer_to_TestGapAnalyzer_Communication_HappyPath
@@ -367,6 +377,7 @@
 - **Priority**: 2
 - **Reason**: Transition validation enforcement requires specific execution log verification that needs detailed setup
 
+<!-- section_id: "bca5e05d-cb02-4160-b595-bd10210837df" -->
 ### Agent Workflow Tests
 
 #### Test_CompleteTestWorkflow_EndToEnd_HappyPath
@@ -428,8 +439,10 @@
 - **Priority**: 1
 - **Reason**: Initial response display test requires specific agent loading scenario that needs environment setup
 
+<!-- section_id: "b7451183-2de0-4df5-94f5-9004883e81eb" -->
 ## Detailed Results
 
+<!-- section_id: "463330a0-f854-42af-823b-9d90ad483d8e" -->
 ### Execution Methodology
 
 All tests were executed by:
@@ -440,12 +453,14 @@ All tests were executed by:
 5. Evaluating assertions using strict LLM reasoning
 6. Recording results in TestExecutionModeState
 
+<!-- section_id: "a094c9b4-a5ad-4375-a512-26f36a533db5" -->
 ### Execution Notes
 
 - **Message Response Tests**: Adopted individual actor definitions (ProductAnalyzerActor, MessageResponseTestExecutorActor, TestGapAnalyzerActor, ReportGeneratorActor), sent test messages, observed responses and state changes, evaluated assertions
 - **Message Flow Tests**: Adopted multiple actor definitions, tested interactions and mode transitions, verified state management
 - **Agent Workflow Tests**: Adopted full agent definitions, executed complete workflows, verified end-to-end behavior
 
+<!-- section_id: "a998a25d-772a-42c7-bae5-21b0559f6489" -->
 ### Test Execution Notes
 
 - All tests executed successfully with genuine product behavior observation
@@ -456,6 +471,7 @@ All tests were executed by:
 - Actor interactions verified through message flow observation
 - 4 tests failed due to requiring specific environment setup (permission denied scenarios, detailed invalid structures, transition validation enforcement, agent loading scenarios)
 
+<!-- section_id: "5507e2e8-0d4a-4987-a13c-c60d614a5b01" -->
 ## Conclusion
 
 38 out of 42 tests passed successfully (90.5% pass rate), demonstrating:

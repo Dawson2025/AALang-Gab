@@ -1,7 +1,12 @@
+---
+resource_id: "08e8ae78-acbb-4bdc-b018-bde8138fb865"
+---
 # Test Results Report - gab
 
+<!-- section_id: "e7ed0644-159d-4bda-9e92-faa520c56c7a" -->
 ## Summary
 
+<!-- section_id: "85f519d0-a875-480b-a608-705e5eb96dc6" -->
 ### Overall Statistics
 
 | Metric | Value |
@@ -12,6 +17,7 @@
 | Errors | 0 |
 | Pass Rate | 100% |
 
+<!-- section_id: "b2b28316-4b4b-479f-a975-965249c9281e" -->
 ### Statistics by Type
 
 | Test Type | Total | Passed | Failed | Errors | Pass Rate |
@@ -20,6 +26,7 @@
 | Message Flow Tests | 26 | 26 | 0 | 0 | 100% |
 | Agent Workflow Tests | 21 | 21 | 0 | 0 | 100% |
 
+<!-- section_id: "bdf520cf-7e4a-49f2-a63f-9e59e3e3ccb5" -->
 ## Coverage Metrics
 
 | Metric | Coverage | Details |
@@ -31,8 +38,10 @@
 | Message Path Coverage | 100% | All actor-to-actor communication paths tested |
 | State Transition Coverage | 100% | All mode transitions tested |
 
+<!-- section_id: "f9132f2c-3501-417f-81e9-7c395e625df8" -->
 ## Test Results
 
+<!-- section_id: "a1e3f42d-995b-4476-8248-5e28e03ca13b" -->
 ### Message Response Tests
 
 All 91 message response tests passed successfully. Tests verified:
@@ -155,6 +164,7 @@ All 91 message response tests passed successfully. Tests verified:
 
 **Test Status**: All 91 tests PASSED
 
+<!-- section_id: "bfe2a539-db74-430f-ae9a-68a1649baf3b" -->
 ### Message Flow Tests
 
 All 26 message flow tests passed successfully. Tests verified:
@@ -197,6 +207,7 @@ All 26 message flow tests passed successfully. Tests verified:
 
 **Test Status**: All 26 tests PASSED
 
+<!-- section_id: "719a6868-deec-4577-9b8c-5356a6e1037d" -->
 ### Agent Workflow Tests
 
 All 21 agent workflow tests passed successfully. Tests verified:
@@ -236,8 +247,10 @@ All 21 agent workflow tests passed successfully. Tests verified:
 
 **Test Status**: All 21 tests PASSED
 
+<!-- section_id: "0ead2786-f8c1-4097-b8f3-cd2f1e5edbf7" -->
 ## Detailed Results
 
+<!-- section_id: "13c48216-ba15-4387-9d7c-119479d7fc9b" -->
 ### Message Response Tests - Key Highlights
 
 #### GenerationPersona1 Tests
@@ -268,6 +281,7 @@ All 21 agent workflow tests passed successfully. Tests verified:
 - **Validation**: Correctly rejected negative and non-integer decisionCount values
 - **Cross-Mode Access**: Accessible from all modes
 
+<!-- section_id: "cb6d00cb-0c2c-410e-8a38-9a523379e8c4" -->
 ### Message Flow Tests - Key Highlights
 
 #### Generation Mode Readiness Gate
@@ -283,6 +297,7 @@ All 21 agent workflow tests passed successfully. Tests verified:
 - **First-Write-Wins**: Correctly applied first-write-wins policy for conflicting state updates
 - **Concurrent Updates**: Handled concurrent updates to different fields correctly
 
+<!-- section_id: "0add519c-1815-4a4e-8a6a-c7ee00c3ac3b" -->
 ### Agent Workflow Tests - Key Highlights
 
 #### Formalization Skipped Workflow
@@ -299,8 +314,10 @@ All 21 agent workflow tests passed successfully. Tests verified:
 - **Copyright Prohibition**: No ex:CopyrightNotice nodes in any generated products
 - **Quality Checklist**: All quality checklist categories addressed for all generated products
 
+<!-- section_id: "179f41e6-db58-4c3c-992a-752afa2cff11" -->
 ## Execution Logs
 
+<!-- section_id: "1feb1d99-ef15-4ecb-b703-36159d39d590" -->
 ### Test Execution Summary
 
 All 138 tests were executed by:
@@ -311,12 +328,14 @@ All 138 tests were executed by:
 5. Evaluating assertions using strict LLM reasoning
 6. Recording results in TestExecutionModeState
 
+<!-- section_id: "6d023ec7-9d8b-4db3-a6b3-f9f0e0b8702f" -->
 ### Execution Methodology
 
 - **Message Response Tests**: Adopted individual actor definitions, sent test messages, observed responses and state changes, evaluated assertions
 - **Message Flow Tests**: Adopted multiple actor definitions, tested interactions and mode transitions, verified state management
 - **Agent Workflow Tests**: Adopted full agent definitions, executed complete workflows, verified end-to-end behavior
 
+<!-- section_id: "eef30c26-3de1-4562-9013-eb36ac18fb48" -->
 ### Test Execution Notes
 
 - All tests executed successfully with genuine product behavior observation
@@ -327,6 +346,7 @@ All 138 tests were executed by:
 - Actor interactions verified through message flow observation
 - All new tests (63 tests) executed successfully alongside existing tests (75 tests)
 
+<!-- section_id: "1fc5c970-763f-4d25-8abc-40ab5231ad72" -->
 ## Conclusion
 
 All 138 tests passed successfully, demonstrating:

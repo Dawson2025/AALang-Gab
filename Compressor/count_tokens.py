@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# resource_id: cd4e4806-bfdf-466a-93a2-67b180d4a018
 """
 Token Counter Script
 Counts tokens using OpenAI's tiktoken library (same as platform.openai.com/tokenizer)

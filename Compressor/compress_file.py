@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# resource_id: d3203a4c-3f5a-4a6e-98a9-a75acc324574
 """
 Compression tool for JSON-LD files using Huffman V2 compression algorithm
 """

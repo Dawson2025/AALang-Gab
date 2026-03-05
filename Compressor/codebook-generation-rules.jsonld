@@ -14,7 +14,6 @@
       "description": "Complete specification of rules and parameters for generating the codebook in Huffman V2 compression algorithm",
       "version": "2.0",
       "purpose": "Define the algorithm, constraints, and parameters used to generate the codebook that maps frequent strings to short codes",
-      
       "inputRequirements": {
         "source": "Frequency analysis data from Stage 3",
         "dataStructure": "Dictionary/Counter object tracking (string, frequency) pairs",
@@ -25,7 +24,6 @@
           "rationale": "Short strings provide minimal compression benefit and add overhead"
         }
       },
-      
       "selectionCriteria": {
         "step1": {
           "operation": "Calculate compression benefit",
@@ -57,7 +55,6 @@
           "rationale": "Limits codebook size to balance compression benefit vs. overhead"
         }
       },
-      
       "codeAssignment": {
         "format": "Codes are prefixed with $ symbol",
         "first62Codes": {
@@ -86,7 +83,6 @@
           "rationale": "Shorter codes for most frequent strings maximizes compression benefit"
         }
       },
-      
       "parameters": {
         "max_codes": {
           "value": 150,
@@ -109,7 +105,6 @@
           "rationale": "Short strings provide minimal compression benefit and add overhead"
         }
       },
-      
       "headerCodebook": {
         "size": 30,
         "description": "Only top 30 codes included in file header for LLM readability",
@@ -122,7 +117,6 @@
         "format": "$code=text",
         "example": "$0=This is a very long string that will be truncated if it exceeds 80 characters..."
       },
-      
       "algorithm": {
         "type": "Frequency-based text substitution",
         "similarTo": "Huffman coding but with fixed-length codes for simplicity",
@@ -132,7 +126,6 @@
         },
         "rationale": "Fixed-length codes are easier for LLMs to parse and understand"
       },
-      
       "implementation": {
         "function": "generate_codebook(frequency_data)",
         "language": "Python 3",
@@ -150,7 +143,6 @@
           "codebook": "Dictionary mapping original_string -> code (e.g., 'long string' -> '$0')"
         }
       },
-      
       "constraints": [
         "Calculate compression benefit: (original_length - code_length) * frequency for each string",
         "Filter candidates with total_savings > 5 bytes per use (min_savings_per_use = 5)",
@@ -161,7 +153,6 @@
         "Only analyze @graph content, not @context",
         "Store codebook in shared state (MessageInterface) for string encoding stage"
       ],
-      
       "validation": {
         "checks": [
           "Verify codebook size does not exceed 150 codes",
@@ -171,20 +162,18 @@
           "Verify code format matches specification ($X or $XX)"
         ]
       },
-      
       "usage": {
         "stage": "Stage 4 of Huffman V2 compression",
         "precedes": "Stage 5: String Encoding",
         "follows": "Stage 3: String Frequency Analysis",
         "output": "Codebook dictionary passed to string encoding stage"
       },
-      
       "notes": {
         "codeLengthEstimation": "During candidate selection, code_length is estimated as 2 (for single char codes). Actual assignment may use 2 or 3 character codes, but this estimation is sufficient for filtering.",
         "sortingOrder": "Codebook must be sorted by original string length (longest first) before use in string encoding to avoid partial matches",
         "replacementOrder": "When encoding strings, process longest strings first to prevent shorter strings from partially matching longer ones"
       }
     }
-  ]
+  ],
+  "file_id": "385345e4-6ec2-48ab-8e87-ea72fe4b77c0"
 }
-

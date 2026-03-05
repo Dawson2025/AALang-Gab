@@ -39,7 +39,12 @@
       "assertions": [
         {
           "type": "followsSequence",
-          "expected": ["TestNeedEvaluationMode", "TestGenerationMode", "TestExecutionMode", "TestResultReportingMode"],
+          "expected": [
+            "TestNeedEvaluationMode",
+            "TestGenerationMode",
+            "TestExecutionMode",
+            "TestResultReportingMode"
+          ],
           "actual": "TO_BE_EVALUATED"
         },
         {
@@ -340,6 +345,6 @@
         }
       ]
     }
-  ]
+  ],
+  "file_id": "d29c1d51-37e5-4558-9789-8308437551a5"
 }
-

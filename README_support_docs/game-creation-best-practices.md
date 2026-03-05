@@ -1,9 +1,13 @@
+---
+resource_id: "89be8bce-912f-4275-96cb-b34bc6822ed7"
+---
 # Game Creation Best Practices
 
 > **⚠️ This document is still under development.**
 
 This document will provide actionable best practices for creating stable GAB games that require fewer modifications and bug fixes. The content is being developed based on real-world game creation experiences.
 
+<!-- section_id: "3ca7ec31-7031-41ec-b1b0-9399cdec7245" -->
 ## Coming Soon
 
 This guide will cover best practices for:

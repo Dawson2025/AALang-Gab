@@ -34,7 +34,11 @@
           "purpose": "Test complete agent workflows and end-to-end execution"
         }
       ],
-      "typeNames": ["MessageResponseTest", "MessageFlowTest", "AgentWorkflowTest"]
+      "typeNames": [
+        "MessageResponseTest",
+        "MessageFlowTest",
+        "AgentWorkflowTest"
+      ]
     },
     {
       "@id": "ex:TestSpecification",
@@ -89,7 +93,10 @@
               "items": {
                 "type": "object",
                 "description": "AALang message following AALang message format (see index.jsonld ex:Message)",
-                "required": ["routingGraph", "payload"],
+                "required": [
+                  "routingGraph",
+                  "payload"
+                ],
                 "properties": {
                   "routingGraph": {
                     "type": "object",
@@ -365,11 +372,17 @@
       },
       "testResults": {
         "file": "tests/{product-name}-test-results.md",
-        "includes": ["pass/fail status", "detailed execution logs", "summary statistics"],
-        "excludes": ["execution time"],
+        "includes": [
+          "pass/fail status",
+          "detailed execution logs",
+          "summary statistics"
+        ],
+        "excludes": [
+          "execution time"
+        ],
         "output": "both console and file"
       }
     }
-  ]
+  ],
+  "file_id": "7502e0e4-c68c-4212-af0d-37eb829dd009"
 }
-

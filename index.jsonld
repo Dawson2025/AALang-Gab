@@ -78,18 +78,54 @@
       "rdfs:label": "LLM Agent",
       "description": "Agent instance implementing n-mode-m-actor pattern",
       "properties": {
-        "pattern": {"type": "string", "description": "n-mode-m-actor pattern declaration (e.g., '2-mode-7-actor')"},
-        "modes": {"type": "array", "items": "mode_id", "description": "array of mode identifiers"},
-        "actors": {"type": "array", "items": "actor_id", "description": "array of actor identifiers"},
-        "purpose": {"type": "string", "optional": true, "description": "overall purpose of the agent"},
-        "constraints": {"type": "array", "optional": true, "source": "declared in prompt", "description": "behavioral rules and constraints for the agent"},
-        "prohibitions": {"type": "array", "optional": true, "pattern": "ex:ProhibitionPattern", "description": "Structured prohibitions with severity levels - see ex:ProhibitionPattern for structure definition"},
-        "requirements": {"type": "array", "optional": true, "pattern": "ex:RequirementPattern", "description": "Structured requirements with severity levels - see ex:RequirementPattern for structure definition"}
+        "pattern": {
+          "type": "string",
+          "description": "n-mode-m-actor pattern declaration (e.g., '2-mode-7-actor')"
+        },
+        "modes": {
+          "type": "array",
+          "items": "mode_id",
+          "description": "array of mode identifiers"
+        },
+        "actors": {
+          "type": "array",
+          "items": "actor_id",
+          "description": "array of actor identifiers"
+        },
+        "purpose": {
+          "type": "string",
+          "optional": true,
+          "description": "overall purpose of the agent"
+        },
+        "constraints": {
+          "type": "array",
+          "optional": true,
+          "source": "declared in prompt",
+          "description": "behavioral rules and constraints for the agent"
+        },
+        "prohibitions": {
+          "type": "array",
+          "optional": true,
+          "pattern": "ex:ProhibitionPattern",
+          "description": "Structured prohibitions with severity levels - see ex:ProhibitionPattern for structure definition"
+        },
+        "requirements": {
+          "type": "array",
+          "optional": true,
+          "pattern": "ex:RequirementPattern",
+          "description": "Structured requirements with severity levels - see ex:RequirementPattern for structure definition"
+        }
       },
       "note": "LLMAgent root node does NOT have a 'responsibilities' property. Responsibilities are for Personas and Actors, not for the LLMAgent root node itself. The LLMAgent root node has optional properties: purpose, constraints, prohibitions, and requirements.",
       "contains": [
-        {"@id": "ex:Actor", "cardinality": "m>=1"},
-        {"@id": "ex:Mode", "cardinality": "n>=1"}
+        {
+          "@id": "ex:Actor",
+          "cardinality": "m>=1"
+        },
+        {
+          "@id": "ex:Mode",
+          "cardinality": "n>=1"
+        }
       ],
       "capabilities": [
         "Parse and interpret AALang graph-based message syntax",
@@ -99,8 +135,14 @@
         "Enforce mode constraints per prompt declaration"
       ],
       "communication": {
-        "interAgent": {"@id": "ex:CommunicationLayer0", "protocol": "gossip-based P2P"},
-        "intraAgent": {"@id": "ex:CommunicationLayer1", "protocol": "local graph routing"}
+        "interAgent": {
+          "@id": "ex:CommunicationLayer0",
+          "protocol": "gossip-based P2P"
+        },
+        "intraAgent": {
+          "@id": "ex:CommunicationLayer1",
+          "protocol": "local graph routing"
+        }
       }
     },
     {
@@ -108,28 +150,87 @@
       "@type": "Concept",
       "rdfs:label": "Actor",
       "description": "Individual reasoning unit within an LLM agent. All actors are stateful.",
-      "containedBy": {"@id": "ex:LLMAgent"},
+      "containedBy": {
+        "@id": "ex:LLMAgent"
+      },
       "properties": {
-        "id": {"type": "string", "constraint": "unique within agent"},
-        "modes": {"type": "array", "description": "subset of agent.modes that actor operates in"},
-        "active_mode": {"type": "mode", "enforcement": "runtime-enforced", "description": "current active mode"},
-        "personas": {"type": "array", "optional": true, "pattern": "library", "description": "optional internal personas"},
-        "isolated_context": {"type": "state", "scope": "private", "description": "actor-specific reasoning state"},
-        "stateful": {"type": "boolean", "description": "All actors are stateful - they maintain their own state", "default": true},
-        "context_wide_state_actor": {"type": "boolean", "optional": true, "description": "Special actor designated to hold context-wide state accessible to all actors in the agent"},
+        "id": {
+          "type": "string",
+          "constraint": "unique within agent"
+        },
+        "modes": {
+          "type": "array",
+          "description": "subset of agent.modes that actor operates in"
+        },
+        "active_mode": {
+          "type": "mode",
+          "enforcement": "runtime-enforced",
+          "description": "current active mode"
+        },
+        "personas": {
+          "type": "array",
+          "optional": true,
+          "pattern": "library",
+          "description": "optional internal personas"
+        },
+        "isolated_context": {
+          "type": "state",
+          "scope": "private",
+          "description": "actor-specific reasoning state"
+        },
+        "stateful": {
+          "type": "boolean",
+          "description": "All actors are stateful - they maintain their own state",
+          "default": true
+        },
+        "context_wide_state_actor": {
+          "type": "boolean",
+          "optional": true,
+          "description": "Special actor designated to hold context-wide state accessible to all actors in the agent"
+        },
         "file_io_capability": {
           "type": "object",
           "optional": true,
           "description": "File I/O capability declaration for this actor",
           "properties": {
-            "enabled": {"type": "boolean", "description": "whether file I/O is enabled for this actor"},
-            "allowed_operations": {"type": "array", "items": {"enum": ["read", "write", "list", "delete", "create_directory"]}},
-            "path_restrictions": {"type": "object", "description": "allowed/disallowed paths"},
-            "permissions": {"type": "object", "description": "read-only vs read-write permissions"}
+            "enabled": {
+              "type": "boolean",
+              "description": "whether file I/O is enabled for this actor"
+            },
+            "allowed_operations": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "read",
+                  "write",
+                  "list",
+                  "delete",
+                  "create_directory"
+                ]
+              }
+            },
+            "path_restrictions": {
+              "type": "object",
+              "description": "allowed/disallowed paths"
+            },
+            "permissions": {
+              "type": "object",
+              "description": "read-only vs read-write permissions"
+            }
           }
         },
-        "prohibitions": {"type": "array", "optional": true, "pattern": "ex:ProhibitionPattern", "description": "Structured prohibitions with severity levels - see ex:ProhibitionPattern for structure definition"},
-        "requirements": {"type": "array", "optional": true, "pattern": "ex:RequirementPattern", "description": "Structured requirements with severity levels - see ex:RequirementPattern for structure definition"}
+        "prohibitions": {
+          "type": "array",
+          "optional": true,
+          "pattern": "ex:ProhibitionPattern",
+          "description": "Structured prohibitions with severity levels - see ex:ProhibitionPattern for structure definition"
+        },
+        "requirements": {
+          "type": "array",
+          "optional": true,
+          "pattern": "ex:RequirementPattern",
+          "description": "Structured requirements with severity levels - see ex:RequirementPattern for structure definition"
+        }
       },
       "capabilities": [
         "Interpret and execute AALang message syntax independently",
@@ -140,9 +241,15 @@
         "Support file I/O operations when declared (optional capability)"
       ],
       "contains": [
-        {"@id": "ex:Persona", "optional": true, "cardinality": "0 or more"}
+        {
+          "@id": "ex:Persona",
+          "optional": true,
+          "cardinality": "0 or more"
+        }
       ],
-      "operatesIn": {"@id": "ex:Mode"}
+      "operatesIn": {
+        "@id": "ex:Mode"
+      }
     },
     {
       "@id": "ex:Mode",
@@ -151,14 +258,45 @@
       "implementation": "built-in primitive",
       "description": "Core language primitive for behavioral mode management",
       "properties": {
-        "id": {"type": "string", "description": "unique mode identifier"},
-        "purpose": {"type": "string", "description": "behavioral purpose of the mode"},
-        "constraints": {"type": "rules", "source": "declared in prompt", "description": "behavioral rules per mode"},
-        "transition_rules": {"type": "rules", "enforcement": "runtime-enforced", "description": "valid transitions between modes"},
-        "message_interpretation": {"type": "rules", "scope": "mode-specific", "description": "mode-specific message interpretation"},
-        "bounded_non_determinism": {"type": "scope", "description": "acceptable variance boundaries for this mode"},
-        "prohibitions": {"type": "array", "optional": true, "pattern": "ex:ProhibitionPattern", "description": "Structured prohibitions with severity levels - see ex:ProhibitionPattern for structure definition"},
-        "requirements": {"type": "array", "optional": true, "pattern": "ex:RequirementPattern", "description": "Structured requirements with severity levels - see ex:RequirementPattern for structure definition"}
+        "id": {
+          "type": "string",
+          "description": "unique mode identifier"
+        },
+        "purpose": {
+          "type": "string",
+          "description": "behavioral purpose of the mode"
+        },
+        "constraints": {
+          "type": "rules",
+          "source": "declared in prompt",
+          "description": "behavioral rules per mode"
+        },
+        "transition_rules": {
+          "type": "rules",
+          "enforcement": "runtime-enforced",
+          "description": "valid transitions between modes"
+        },
+        "message_interpretation": {
+          "type": "rules",
+          "scope": "mode-specific",
+          "description": "mode-specific message interpretation"
+        },
+        "bounded_non_determinism": {
+          "type": "scope",
+          "description": "acceptable variance boundaries for this mode"
+        },
+        "prohibitions": {
+          "type": "array",
+          "optional": true,
+          "pattern": "ex:ProhibitionPattern",
+          "description": "Structured prohibitions with severity levels - see ex:ProhibitionPattern for structure definition"
+        },
+        "requirements": {
+          "type": "array",
+          "optional": true,
+          "pattern": "ex:RequirementPattern",
+          "description": "Structured requirements with severity levels - see ex:RequirementPattern for structure definition"
+        }
       },
       "characteristics": [
         "Different reasoning constraints and goals per mode",
@@ -179,22 +317,56 @@
       "rdfs:label": "Persona",
       "implementation": "optional library pattern",
       "description": "Standardized pattern for persona-based internal reasoning within actors",
-      "containedBy": {"@id": "ex:Actor"},
+      "containedBy": {
+        "@id": "ex:Actor"
+      },
       "properties": {
-        "id": {"type": "string", "scope": "within actor"},
-        "name": {"type": "string", "description": "human-readable persona name"},
-        "role": {"type": "string", "examples": ["senior", "junior"], "source": "declared in prompt"},
-        "personality": {"type": "string", "description": "persona behavioral characteristics"},
-        "responsibilities": {"type": "array", "description": "persona responsibilities"},
+        "id": {
+          "type": "string",
+          "scope": "within actor"
+        },
+        "name": {
+          "type": "string",
+          "description": "human-readable persona name"
+        },
+        "role": {
+          "type": "string",
+          "examples": [
+            "senior",
+            "junior"
+          ],
+          "source": "declared in prompt"
+        },
+        "personality": {
+          "type": "string",
+          "description": "persona behavioral characteristics"
+        },
+        "responsibilities": {
+          "type": "array",
+          "description": "persona responsibilities"
+        },
         "communication_matrix": {
           "type": "matrix",
           "description": "which personas can message which",
           "source": "explicit declaration in prompt",
           "discovery": "all personas know matrix at instantiation"
         },
-        "deliberation_protocol": {"type": "protocol", "pattern": "negotiation"},
-        "prohibitions": {"type": "array", "optional": true, "pattern": "ex:ProhibitionPattern", "description": "Structured prohibitions with severity levels - see ex:ProhibitionPattern for structure definition"},
-        "requirements": {"type": "array", "optional": true, "pattern": "ex:RequirementPattern", "description": "Structured requirements with severity levels - see ex:RequirementPattern for structure definition"}
+        "deliberation_protocol": {
+          "type": "protocol",
+          "pattern": "negotiation"
+        },
+        "prohibitions": {
+          "type": "array",
+          "optional": true,
+          "pattern": "ex:ProhibitionPattern",
+          "description": "Structured prohibitions with severity levels - see ex:ProhibitionPattern for structure definition"
+        },
+        "requirements": {
+          "type": "array",
+          "optional": true,
+          "pattern": "ex:RequirementPattern",
+          "description": "Structured requirements with severity levels - see ex:RequirementPattern for structure definition"
+        }
       },
       "usage": {
         "optional": "Actors choose when to employ persona-based reasoning",
@@ -220,7 +392,11 @@
           {
             "description": "Persona to Persona (different agents)",
             "routing": "gossip network + local graphs",
-            "layers": [0, 1, 2]
+            "layers": [
+              0,
+              1,
+              2
+            ]
           }
         ]
       }
@@ -283,7 +459,10 @@
           "description": "Actors operating in different modes communicate via message passing with mode transition validation",
           "routing": "local graph routing with mode transition validation",
           "scope": "same agent, different modes",
-          "edge_type": ["local", "mode_transition"],
+          "edge_type": [
+            "local",
+            "mode_transition"
+          ],
           "message_type": "actor_to_actor (cross_mode)",
           "validation": {
             "type": "runtime-enforced",
@@ -309,11 +488,17 @@
           "protocol": "A2A (Agent to Agent)",
           "scope": "inter-agent",
           "routing": "gossip network + local graphs",
-          "edge_types": ["gossip", "local"],
+          "edge_types": [
+            "gossip",
+            "local"
+          ],
           "message_type": "agent_to_agent",
           "network_layer": {
             "protocol": "P2P gossip protocol",
-            "compatible": ["libp2p", "GossipSub patterns"]
+            "compatible": [
+              "libp2p",
+              "GossipSub patterns"
+            ]
           }
         }
       ]
@@ -326,12 +511,19 @@
       "structure": {
         "routing_metadata": {
           "type": "graph nodes/edges",
-          "characteristics": ["structured", "predictable", "parseable"],
+          "characteristics": [
+            "structured",
+            "predictable",
+            "parseable"
+          ],
           "purpose": "routing and addressing"
         },
         "payload_content": {
           "type": "semantic/natural language",
-          "characteristics": ["flexible", "LLM-optimized"],
+          "characteristics": [
+            "flexible",
+            "LLM-optimized"
+          ],
           "purpose": "message content"
         },
         "rationale": "Balance predictability (routing) with flexibility (content)"
@@ -348,13 +540,25 @@
       "structured_routing": {
         "component": "Graph Nodes/Edges",
         "purpose": "predictable parsing for routing decisions",
-        "extractable": ["source", "target", "path", "routing_type"],
+        "extractable": [
+          "source",
+          "target",
+          "path",
+          "routing_type"
+        ],
         "enables": "efficient message forwarding"
       },
       "semantic_content": {
         "component": "Payload",
-        "format": ["natural language", "structured data"],
-        "characteristics": ["LLM-optimized", "mode-aware", "persona-aware"],
+        "format": [
+          "natural language",
+          "structured data"
+        ],
+        "characteristics": [
+          "LLM-optimized",
+          "mode-aware",
+          "persona-aware"
+        ],
         "adaptation": {
           "mode": "content adapts to target mode constraints",
           "persona": "content respects persona communication matrix"
@@ -373,7 +577,10 @@
       "rationale": "Leverages LLM strengths: natural language generation and interpretation, semantic understanding, mode-isolated context interpretation",
       "messaging_approach": {
         "same_mode_personas": {
-          "options": ["implicit reasoning via shared mode state", "explicit natural language messages"],
+          "options": [
+            "implicit reasoning via shared mode state",
+            "explicit natural language messages"
+          ],
           "flexibility": "Can use either approach"
         },
         "cross_mode_personas": {
@@ -387,7 +594,10 @@
         }
       },
       "message_structure": {
-        "routing_graph": {"type": "structured metadata", "purpose": "predictable routing"},
+        "routing_graph": {
+          "type": "structured metadata",
+          "purpose": "predictable routing"
+        },
         "payload": {
           "natural_language": "Message content in natural language (LLM generates)",
           "semantic_intent": "What this message is trying to achieve (LLM can reason about)",
@@ -455,8 +665,20 @@
           }
         },
         "edge": "mode transition edge or 'direct' for same-mode or user messages",
-        "node_types": ["agent", "actor", "mode", "persona"],
-        "edge_types": ["gossip", "local", "internal", "mode_transition", "mcp", "a2a"]
+        "node_types": [
+          "agent",
+          "actor",
+          "mode",
+          "persona"
+        ],
+        "edge_types": [
+          "gossip",
+          "local",
+          "internal",
+          "mode_transition",
+          "mcp",
+          "a2a"
+        ]
       },
       "payload": {
         "naturalLanguage": {
@@ -485,7 +707,14 @@
           "optional": true
         },
         "message_type": {
-          "enum": ["persona_to_persona", "actor_to_actor", "agent_to_agent", "system", "mcp", "a2a"],
+          "enum": [
+            "persona_to_persona",
+            "actor_to_actor",
+            "agent_to_agent",
+            "system",
+            "mcp",
+            "a2a"
+          ],
           "optional": true
         }
       },
@@ -586,35 +815,85 @@
       "@type": "Schema",
       "agent_node": {
         "properties": {
-          "id": {"type": "string", "format": "DID or unique ID"},
-          "capabilities": {"type": "array"},
-          "actors": {"type": "array", "items": "actor_id"},
-          "modes": {"type": "array", "items": "mode_id"},
-          "gossip_address": {"type": "string", "format": "P2P network address"}
+          "id": {
+            "type": "string",
+            "format": "DID or unique ID"
+          },
+          "capabilities": {
+            "type": "array"
+          },
+          "actors": {
+            "type": "array",
+            "items": "actor_id"
+          },
+          "modes": {
+            "type": "array",
+            "items": "mode_id"
+          },
+          "gossip_address": {
+            "type": "string",
+            "format": "P2P network address"
+          }
         }
       },
       "actor_node": {
         "properties": {
-          "id": {"type": "string", "scope": "within agent"},
-          "agent": {"type": "reference", "reference": "agent_node"},
-          "active_mode": {"type": "mode", "constraint": "current"},
-          "modes": {"type": "array", "description": "available modes for this actor"},
-          "personas": {"type": "array", "optional": true, "items": "persona_id"}
+          "id": {
+            "type": "string",
+            "scope": "within agent"
+          },
+          "agent": {
+            "type": "reference",
+            "reference": "agent_node"
+          },
+          "active_mode": {
+            "type": "mode",
+            "constraint": "current"
+          },
+          "modes": {
+            "type": "array",
+            "description": "available modes for this actor"
+          },
+          "personas": {
+            "type": "array",
+            "optional": true,
+            "items": "persona_id"
+          }
         }
       },
       "mode_node": {
         "properties": {
-          "id": {"type": "string"},
-          "constraints": {"type": "rules", "source": "from prompt"},
-          "valid_transitions": {"type": "array", "items": "mode_id"}
+          "id": {
+            "type": "string"
+          },
+          "constraints": {
+            "type": "rules",
+            "source": "from prompt"
+          },
+          "valid_transitions": {
+            "type": "array",
+            "items": "mode_id"
+          }
         }
       },
       "persona_node": {
         "properties": {
-          "id": {"type": "string", "scope": "within actor"},
-          "actor": {"type": "reference", "reference": "actor_node"},
-          "role": {"type": "string", "source": "from prompt"},
-          "communication_matrix": {"type": "matrix", "description": "allowed persona targets"}
+          "id": {
+            "type": "string",
+            "scope": "within actor"
+          },
+          "actor": {
+            "type": "reference",
+            "reference": "actor_node"
+          },
+          "role": {
+            "type": "string",
+            "source": "from prompt"
+          },
+          "communication_matrix": {
+            "type": "matrix",
+            "description": "allowed persona targets"
+          }
         }
       }
     },
@@ -622,39 +901,98 @@
       "@id": "ex:GraphEdgeTypes",
       "@type": "Schema",
       "gossip_edge": {
-        "source": {"type": "agent_node"},
-        "target": {"type": "agent_node"},
-        "protocol": {"compatible": ["libp2p", "GossipSub"]},
-        "latency": {"type": "variable", "factor": "network"}
+        "source": {
+          "type": "agent_node"
+        },
+        "target": {
+          "type": "agent_node"
+        },
+        "protocol": {
+          "compatible": [
+            "libp2p",
+            "GossipSub"
+          ]
+        },
+        "latency": {
+          "type": "variable",
+          "factor": "network"
+        }
       },
       "local_edge": {
-        "source": {"type": ["actor_node", "persona_node"]},
-        "target": {"type": ["actor_node", "persona_node"]},
-        "agent": {"type": "reference", "constraint": "shared parent agent"},
-        "latency": {"type": "minimal", "reason": "in-memory"}
+        "source": {
+          "type": [
+            "actor_node",
+            "persona_node"
+          ]
+        },
+        "target": {
+          "type": [
+            "actor_node",
+            "persona_node"
+          ]
+        },
+        "agent": {
+          "type": "reference",
+          "constraint": "shared parent agent"
+        },
+        "latency": {
+          "type": "minimal",
+          "reason": "in-memory"
+        }
       },
       "internal_edge": {
-        "source": {"type": "persona_node"},
-        "target": {"type": "persona_node"},
-        "actor": {"type": "reference", "constraint": "shared parent actor"},
-        "mode": {"type": "mode", "description": "mode context"},
-        "latency": {"type": "minimal", "reason": "reasoning context"}
+        "source": {
+          "type": "persona_node"
+        },
+        "target": {
+          "type": "persona_node"
+        },
+        "actor": {
+          "type": "reference",
+          "constraint": "shared parent actor"
+        },
+        "mode": {
+          "type": "mode",
+          "description": "mode context"
+        },
+        "latency": {
+          "type": "minimal",
+          "reason": "reasoning context"
+        }
       },
       "mode_transition_edge": {
-        "source": {"type": "mode_node"},
-        "target": {"type": "mode_node"},
-        "validation": {"type": "runtime-enforced", "primitive": "built-in"},
-        "constraints": {"type": "rules", "source": "from prompt"}
+        "source": {
+          "type": "mode_node"
+        },
+        "target": {
+          "type": "mode_node"
+        },
+        "validation": {
+          "type": "runtime-enforced",
+          "primitive": "built-in"
+        },
+        "constraints": {
+          "type": "rules",
+          "source": "from prompt"
+        }
       },
       "mcp_edge": {
-        "source": {"type": "actor_node"},
-        "target": {"type": "tool or MCP server"},
+        "source": {
+          "type": "actor_node"
+        },
+        "target": {
+          "type": "tool or MCP server"
+        },
         "protocol": "MCP (Model Context Protocol)",
         "scope": "tool integration"
       },
       "a2a_edge": {
-        "source": {"type": "agent_node"},
-        "target": {"type": "agent_node"},
+        "source": {
+          "type": "agent_node"
+        },
+        "target": {
+          "type": "agent_node"
+        },
         "protocol": "A2A (Agent to Agent)",
         "scope": "direct agent-to-agent communication"
       }
@@ -663,17 +1001,43 @@
       "@id": "ex:ProtocolIntegration",
       "@type": "Specification",
       "transport_layer": {
-        "gossip_protocol": {"compatible": ["libp2p", "GossipSub"]},
+        "gossip_protocol": {
+          "compatible": [
+            "libp2p",
+            "GossipSub"
+          ]
+        },
         "architecture": "Pure P2P (not client-server)",
-        "format": ["JSON-LD", "multi-part messages"]
+        "format": [
+          "JSON-LD",
+          "multi-part messages"
+        ]
       },
       "adopted_patterns": {
-        "agent_cards": {"source": "Agent Protocol", "implementation": "Capabilities as graph nodes"},
-        "dids": {"source": "ANP", "implementation": "Agent addressing via decentralized identifiers"},
-        "multi_part": {"source": "ACP", "implementation": "Structured routing + semantic payload"},
-        "graph_native": {"source": "AALang", "implementation": "Routing via graph traversal"},
-        "mcp": {"source": "Model Context Protocol", "implementation": "Tool integration via MCP"},
-        "a2a": {"source": "Agent to Agent", "implementation": "Direct agent-to-agent communication"}
+        "agent_cards": {
+          "source": "Agent Protocol",
+          "implementation": "Capabilities as graph nodes"
+        },
+        "dids": {
+          "source": "ANP",
+          "implementation": "Agent addressing via decentralized identifiers"
+        },
+        "multi_part": {
+          "source": "ACP",
+          "implementation": "Structured routing + semantic payload"
+        },
+        "graph_native": {
+          "source": "AALang",
+          "implementation": "Routing via graph traversal"
+        },
+        "mcp": {
+          "source": "Model Context Protocol",
+          "implementation": "Tool integration via MCP"
+        },
+        "a2a": {
+          "source": "Agent to Agent",
+          "implementation": "Direct agent-to-agent communication"
+        }
       }
     },
     {
@@ -782,14 +1146,22 @@
         "stateful_actors": {
           "purpose": "Stateful actors store messages and state accessible via message passing",
           "storage": "Natural language text storage (no structured queue)",
-          "includes": ["all messages between actors/modes", "approved decisions", "observable mode states"],
+          "includes": [
+            "all messages between actors/modes",
+            "approved decisions",
+            "observable mode states"
+          ],
           "context_inclusion": "automatically included in LLM context window",
           "visibility": "all messages visible to all actors in agent",
           "access_pattern": "Actors access state via message passing to stateful actors (including context-wide state actor)"
         },
         "mode_isolated_state": {
           "purpose": "Independent reasoning context per mode",
-          "characteristics": ["unreadable/unmodifiable by other modes", "includes mode-specific reasoning context", "includes persona deliberations"],
+          "characteristics": [
+            "unreadable/unmodifiable by other modes",
+            "includes mode-specific reasoning context",
+            "includes persona deliberations"
+          ],
           "context_inclusion": "part of mode's context window (isolated portion)",
           "storage": "Stored in stateful actors operating in that mode"
         }
@@ -931,7 +1303,9 @@
       "@id": "ex:StateUpdateConflictResolution",
       "@type": "Protocol",
       "purpose": "Protocol for resolving conflicts when multiple actors attempt to update the same state in a stateful actor",
-      "appliesTo": ["Stateful actors receiving conflicting state update messages"],
+      "appliesTo": [
+        "Stateful actors receiving conflicting state update messages"
+      ],
       "conflictScenario": "Multiple actors send state update messages for the same field with different values",
       "resolutionPolicy": "first-write-wins",
       "process": [
@@ -984,11 +1358,21 @@
       "purpose": "Optional pattern for defining structured prohibitions with severity levels",
       "description": "A structured way to define explicit prohibitions for actors, modes, personas, or any node with responsibilities or constraints.",
       "optional": true,
-      "appliesTo": ["ex:Persona", "ex:Mode", "ex:Actor", "ex:LLMAgent", "any node with responsibilities or constraints"],
+      "appliesTo": [
+        "ex:Persona",
+        "ex:Mode",
+        "ex:Actor",
+        "ex:LLMAgent",
+        "any node with responsibilities or constraints"
+      ],
       "structure": {
         "severity": {
           "type": "enum",
-          "values": ["absolute", "critical", "standard"],
+          "values": [
+            "absolute",
+            "critical",
+            "standard"
+          ],
           "description": "Severity level of the prohibition",
           "definitions": {
             "absolute": "Hard rule with no exceptions - must never be violated under any circumstances",
@@ -1017,11 +1401,21 @@
       "purpose": "Optional pattern for defining structured requirements with severity levels",
       "description": "A structured way to define explicit requirements for actors, modes, personas, or any node with responsibilities or constraints.",
       "optional": true,
-      "appliesTo": ["ex:Persona", "ex:Mode", "ex:Actor", "ex:LLMAgent", "any node with responsibilities or constraints"],
+      "appliesTo": [
+        "ex:Persona",
+        "ex:Mode",
+        "ex:Actor",
+        "ex:LLMAgent",
+        "any node with responsibilities or constraints"
+      ],
       "structure": {
         "severity": {
           "type": "enum",
-          "values": ["absolute", "critical", "standard"],
+          "values": [
+            "absolute",
+            "critical",
+            "standard"
+          ],
           "description": "Severity level of the requirement",
           "definitions": {
             "absolute": "Hard requirement with no exceptions - must always be fulfilled under any circumstances",
@@ -1110,11 +1504,28 @@
       "format": "JSON-LD graph",
       "rootObject": {
         "description": "Root JSON-LD object containing @context and @graph",
-        "requiredProperties": ["@context", "@graph"],
+        "requiredProperties": [
+          "@context",
+          "@graph"
+        ],
         "optionalProperties": {
-          "constraints": {"type": "array", "optional": true, "description": "Graph-level behavioral rules and constraints applying to all nodes and operations within the graph"},
-          "prohibitions": {"type": "array", "optional": true, "pattern": "ex:ProhibitionPattern", "description": "Structured prohibitions with severity levels applying to the entire graph - see ex:ProhibitionPattern for structure definition"},
-          "requirements": {"type": "array", "optional": true, "pattern": "ex:RequirementPattern", "description": "Structured requirements with severity levels applying to the entire graph - see ex:RequirementPattern for structure definition"}
+          "constraints": {
+            "type": "array",
+            "optional": true,
+            "description": "Graph-level behavioral rules and constraints applying to all nodes and operations within the graph"
+          },
+          "prohibitions": {
+            "type": "array",
+            "optional": true,
+            "pattern": "ex:ProhibitionPattern",
+            "description": "Structured prohibitions with severity levels applying to the entire graph - see ex:ProhibitionPattern for structure definition"
+          },
+          "requirements": {
+            "type": "array",
+            "optional": true,
+            "pattern": "ex:RequirementPattern",
+            "description": "Structured requirements with severity levels applying to the entire graph - see ex:RequirementPattern for structure definition"
+          }
         },
         "note": "Graph-level constraints, prohibitions, and requirements are specified as properties of the root JSON-LD object (alongside @context and @graph). These optional properties apply to all nodes and operations within the graph and can be used to specify global behavioral rules for the entire AALang prompt."
       },
@@ -1122,28 +1533,60 @@
         {
           "@id": "ex:LLMAgent",
           "description": "Root agent node defining pattern (n-mode-m-actor)",
-          "properties": ["pattern", "modes", "actors", "purpose", "constraints", "prohibitions", "requirements"],
+          "properties": [
+            "pattern",
+            "modes",
+            "actors",
+            "purpose",
+            "constraints",
+            "prohibitions",
+            "requirements"
+          ],
           "note": "purpose, constraints, prohibitions, and requirements are optional properties. LLMAgent root node does NOT have a 'responsibilities' property - responsibilities are for Personas and Actors, not for the LLMAgent root node itself."
         },
         {
           "@id": "ex:Mode",
           "description": "Mode definitions with purpose, constraints, isolatedState",
-          "properties": ["purpose", "constraints", "isolatedState", "contains"]
+          "properties": [
+            "purpose",
+            "constraints",
+            "isolatedState",
+            "contains"
+          ]
         },
         {
           "@id": "ex:Actor",
           "description": "Actor definitions with operatesIn, activeMode, persona",
-          "properties": ["id", "operatesIn", "activeMode", "persona", "stateful"]
+          "properties": [
+            "id",
+            "operatesIn",
+            "activeMode",
+            "persona",
+            "stateful"
+          ]
         },
         {
           "@id": "ex:Persona",
           "description": "Optional persona definitions with name, role, personality, responsibilities, canMessage, canReceiveFrom",
-          "properties": ["name", "role", "personality", "responsibilities", "canMessage", "canReceiveFrom"]
+          "properties": [
+            "name",
+            "role",
+            "personality",
+            "responsibilities",
+            "canMessage",
+            "canReceiveFrom"
+          ]
         },
         {
           "@id": "ex:IsolatedState",
           "description": "Mode-isolated state definitions",
-          "properties": ["mode", "scope", "includes", "readableBy", "unreadableBy"]
+          "properties": [
+            "mode",
+            "scope",
+            "includes",
+            "readableBy",
+            "unreadableBy"
+          ]
         }
       ],
       "optionalComponents": [
@@ -1162,7 +1605,13 @@
         {
           "@id": "ex:FileIOCapability",
           "description": "File I/O capability declaration (optional, only if tool needs file operations)",
-          "properties": ["enabled", "allowed_operations", "path_restrictions", "permissions", "defaultExtension"]
+          "properties": [
+            "enabled",
+            "allowed_operations",
+            "path_restrictions",
+            "permissions",
+            "defaultExtension"
+          ]
         }
       ],
       "llmOptimized": {
@@ -1303,10 +1752,20 @@
         "example": {
           "file_io": {
             "enabled": true,
-            "allowed_operations": ["read", "write"],
+            "allowed_operations": [
+              "read",
+              "write"
+            ],
             "path_restrictions": {
-              "allowed_directories": ["./data", "./output"],
-              "forbidden_patterns": ["../", "/etc", "/usr"]
+              "allowed_directories": [
+                "./data",
+                "./output"
+              ],
+              "forbidden_patterns": [
+                "../",
+                "/etc",
+                "/usr"
+              ]
             },
             "permissions": "read-write"
           }
@@ -1363,7 +1822,14 @@
             "file_type": {
               "type": "string",
               "optional": true,
-              "enum": ["jsonld", "json", "markdown", "text", "sql", "binary"],
+              "enum": [
+                "jsonld",
+                "json",
+                "markdown",
+                "text",
+                "sql",
+                "binary"
+              ],
               "description": "Explicit file type if extension is missing or to override extension inference"
             }
           },
@@ -1375,7 +1841,9 @@
             "error": {
               "type": "object",
               "description": "Error response when operation fails",
-              "schema": {"@id": "ex:FileIOErrorResponse"}
+              "schema": {
+                "@id": "ex:FileIOErrorResponse"
+              }
             }
           },
           "execution": "via LLM function calling or MCP file_read tool"
@@ -1400,13 +1868,23 @@
             },
             "mode": {
               "type": "string",
-              "enum": ["overwrite", "append"],
+              "enum": [
+                "overwrite",
+                "append"
+              ],
               "default": "overwrite"
             },
             "file_type": {
               "type": "string",
               "optional": true,
-              "enum": ["jsonld", "json", "markdown", "text", "sql", "binary"],
+              "enum": [
+                "jsonld",
+                "json",
+                "markdown",
+                "text",
+                "sql",
+                "binary"
+              ],
               "description": "Explicit file type if extension is missing or to override extension inference"
             }
           },
@@ -1418,7 +1896,9 @@
             "error": {
               "type": "object",
               "description": "Error response when operation fails",
-              "schema": {"@id": "ex:FileIOErrorResponse"}
+              "schema": {
+                "@id": "ex:FileIOErrorResponse"
+              }
             }
           },
           "execution": "via LLM function calling or MCP file_write tool"
@@ -1440,7 +1920,9 @@
             "error": {
               "type": "object",
               "description": "Error response when operation fails",
-              "schema": {"@id": "ex:FileIOErrorResponse"}
+              "schema": {
+                "@id": "ex:FileIOErrorResponse"
+              }
             }
           },
           "execution": "via LLM function calling or MCP file_list tool"
@@ -1491,12 +1973,26 @@
           "properties": {
             "type": {
               "type": "string",
-              "enum": ["permission_denied", "file_not_found", "disk_full", "path_restriction_violation", "invalid_path", "directory_not_found", "other"],
+              "enum": [
+                "permission_denied",
+                "file_not_found",
+                "disk_full",
+                "path_restriction_violation",
+                "invalid_path",
+                "directory_not_found",
+                "other"
+              ],
               "description": "Type of error that occurred"
             },
             "operation": {
               "type": "string",
-              "enum": ["read", "write", "list", "delete", "create_directory"],
+              "enum": [
+                "read",
+                "write",
+                "list",
+                "delete",
+                "create_directory"
+              ],
               "description": "Operation that failed"
             },
             "file_path": {
@@ -1520,6 +2016,6 @@
         }
       }
     }
-  ]
+  ],
+  "file_id": "04070b77-0725-423a-97b2-d96860c9fdd4"
 }
-

@@ -1,13 +1,19 @@
+---
+resource_id: "fe13a648-9ff1-4f70-a66b-a9e881bdc180"
+---
 # AALang Actor Execution Mechanics
 
+<!-- section_id: "38b1c40f-58e2-4f19-a48e-5058da21e8ae" -->
 ## Understanding How LLMs Execute AALang Actors
 
 This document explains how Large Language Models (LLMs) execute AALang actor definitions in practice, helping you understand the practical mechanics of AALang agent behavior.
 
+<!-- section_id: "c50a9c83-9e6b-4312-abe8-32f067c0b7d1" -->
 ## Core Concept: Definition Adoption, Not Instance Creation
 
 When an LLM executes an AALang agent specification, it doesn't create separate actor instances or blank templates. Instead, the LLM **adopts** actor definitions dynamically as needed.
 
+<!-- section_id: "4b302183-ec36-4e75-ba8e-11374256db72" -->
 ### What This Means
 
 1. **Actor definitions are read and understood**: The LLM parses the JSON-LD file containing actor definitions (responsibilities, personas, modes, constraints, etc.)
@@ -18,6 +24,7 @@ When an LLM executes an AALang agent specification, it doesn't create separate a
 
 4. **Single LLM, multiple behaviors**: The same LLM instance can adopt different actor definitions at different times, effectively "becoming" different actors as needed
 
+<!-- section_id: "412f1451-5b03-439b-af7f-8f1775176073" -->
 ## Practical Example: Loading Actors
 
 When you execute `load actors`:
@@ -32,24 +39,31 @@ When you execute `load actors`:
 
 The LLM doesn't create separate GameMaster and Player instances. Instead, it dynamically adopts each definition when that actor needs to act.
 
+<!-- section_id: "4bbfc1f9-f5c3-4b91-98b3-7bb326606210" -->
 ## Why This Matters for AALang Design
 
 Understanding this execution model helps you design better AALang agents:
 
+<!-- section_id: "9b448871-e63b-45a1-885c-d7037c004d42" -->
 ### 1. **Clear, Self-Contained Definitions**
 Each actor definition must be complete and unambiguous because the LLM will adopt it directly. Vague or incomplete definitions lead to inconsistent behavior.
 
+<!-- section_id: "14b0207e-2631-4eef-bde5-e37d57912d5c" -->
 ### 2. **Explicit Responsibilities**
 Responsibilities should be explicit and actionable. The LLM uses these as direct instructions for behavior.
 
+<!-- section_id: "d81b8738-5c97-479f-93c6-5ad0172ad11c" -->
 ### 3. **Persona Consistency**
 Persona definitions (personality, role, mode) guide the LLM's tone, reasoning style, and decision-making when adopting that actor.
 
+<!-- section_id: "60dd0c9a-3fef-47f2-af53-3ed65d0a1e15" -->
 ### 4. **Mode-Based Behavior**
 Mode definitions help the LLM understand when to adopt which actor behaviors and what constraints apply.
 
+<!-- section_id: "649b43b9-ad19-470d-9076-190240701124" -->
 ## Implications for Agent Designers
 
+<!-- section_id: "a2eae46a-9f42-4e39-8c2f-bb4eb5f56aa9" -->
 ### ✅ Do:
 - Write clear, explicit actor responsibilities
 - Define personas with distinct characteristics
@@ -57,6 +71,7 @@ Mode definitions help the LLM understand when to adopt which actor behaviors and
 - Make constraints and prohibitions explicit
 - Design for context-window native execution (no polling, no separate processes)
 
+<!-- section_id: "1e68218b-77d8-46fa-8705-896a20edd308" -->
 ### ❌ Don't:
 - Assume actors run as separate processes
 - Design for explicit inter-process communication
@@ -64,6 +79,7 @@ Mode definitions help the LLM understand when to adopt which actor behaviors and
 - Use polling or monitoring patterns
 - Create actors that require separate execution contexts
 
+<!-- section_id: "c712ef1b-e8a4-4560-be0e-097c0f2fa596" -->
 ## How Self-Check Works
 
 When executing `self-check actors`:
@@ -75,6 +91,7 @@ When executing `self-check actors`:
 
 Each actor's self-check is performed by the LLM adopting that actor's definition and analyzing from that perspective.
 
+<!-- section_id: "5ce7da06-9c54-4249-887e-c592fc0b9120" -->
 ## Context-Window Native Design
 
 AALang is designed for **context-window native execution**:
@@ -97,6 +114,7 @@ Instead, AALang uses:
 - Message-based state updates
 - Context-window native processing
 
+<!-- section_id: "c917be5a-a151-4f01-81f5-a3be9588734b" -->
 ## Benefits of This Model
 
 1. **Simplicity**: No complex inter-process communication
@@ -105,6 +123,7 @@ Instead, AALang uses:
 4. **Portability**: Works with any LLM that can parse JSON-LD
 5. **Debuggability**: All actor behavior is explicit in definitions
 
+<!-- section_id: "1046c11a-e378-4b98-8646-329022e4ec4b" -->
 ## For Tool Builders
 
 If you're building tools that work with AALang agents:
@@ -115,6 +134,7 @@ If you're building tools that work with AALang agents:
 - **Respect isolated state**: Tools should understand mode-based state isolation
 - **Follow message protocols**: Tools should implement AALang message protocols
 
+<!-- section_id: "d92b5337-2fc6-43d6-8eca-1f2e56e3e5a7" -->
 ## Conclusion
 
 AALang actors are **behavioral definitions** that LLMs adopt dynamically, not separate running processes. This model enables:

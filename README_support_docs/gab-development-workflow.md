@@ -1,3 +1,6 @@
+---
+resource_id: "60f5f6ca-90e6-4f42-92df-6b24d4d3caba"
+---
 # GAB Development Workflow
 
 This diagram shows the suggested workflow for creating and refining a GAB product, starting from the initial GAB 4-mode workflow through testing and finalization.
@@ -38,6 +41,7 @@ flowchart TD
     style CheckStable fill:#f8d7da
 ```
 
+<!-- section_id: "a9ca6e98-71c1-4d48-a51e-48474b48f051" -->
 ## Workflow Steps
 
 1. **GAB 4-Mode Workflow**: Create your initial product specification using GAB's structured workflow:
@@ -66,6 +70,7 @@ flowchart TD
    - **If not stable**: Return to modification using GAB, then return to step 2 (Load Actors).
    - **If stable**: The product is ready for use.
 
+<!-- section_id: "ff2948d3-98a0-49c7-8ff9-3d97f60197b1" -->
 ## Tips
 
 - Run self-checks after every significant modification

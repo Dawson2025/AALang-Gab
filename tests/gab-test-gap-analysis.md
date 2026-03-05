@@ -1,15 +1,21 @@
+---
+resource_id: "3ee56551-e9b0-45d8-bc1d-bca20376cf78"
+---
 # Test Gap Analysis Report - gab
 
+<!-- section_id: "6aa3c209-a91e-4fe4-9202-9ec103a1ffa4" -->
 ## Executive Summary
 
 This report identifies missing test coverage for the GAB product (gab.jsonld). While existing tests provide good coverage for core functionality, several areas need additional test coverage to ensure comprehensive validation.
 
+<!-- section_id: "af9b0fea-f187-4f48-ab49-d01d678e827e" -->
 ## Product Structure Overview
 
 - **Total Actors**: 13
 - **Total Modes**: 4
 - **Total Personas**: 13
 
+<!-- section_id: "ecb162f3-f7ed-4bb8-a4f0-24b0fa47241b" -->
 ### Actors:
 1. ClarificationActor1
 2. ClarificationActor2
@@ -25,8 +31,10 @@ This report identifies missing test coverage for the GAB product (gab.jsonld). W
 12. DebugModeStateActor
 13. DecisionLogStateActor
 
+<!-- section_id: "51f84f86-a8b1-499e-b11d-f23eea4d10ed" -->
 ## Missing Test Coverage
 
+<!-- section_id: "3bf24046-ecc4-46a3-8d6c-b54541f5d728" -->
 ### 1. DebugModeStateActor - Missing Tests
 
 **Existing Coverage**: 3 tests (activation, information tracking, deactivation)
@@ -44,6 +52,7 @@ This report identifies missing test coverage for the GAB product (gab.jsonld). W
 
 **Priority**: Medium - Debug mode is important for troubleshooting but not critical path
 
+<!-- section_id: "0b98c00e-2440-47de-85cc-db4c1a46f839" -->
 ### 2. DecisionLogStateActor - Missing Tests
 
 **Existing Coverage**: 3 tests (decision logging, retrieval, session consistency)
@@ -61,6 +70,7 @@ This report identifies missing test coverage for the GAB product (gab.jsonld). W
 
 **Priority**: Medium - Decision logging is important for audit trail but not critical path
 
+<!-- section_id: "be56f86a-85ac-4393-ad0b-638d3acab333" -->
 ### 3. GenerationPersona1 - Missing Tests
 
 **Existing Coverage**: 6 tests (product generation, verification checklist, readiness enforcement, cross-file reference)
@@ -86,6 +96,7 @@ This report identifies missing test coverage for the GAB product (gab.jsonld). W
 
 **Priority**: High - Generation is critical path, comprehensive verification is essential
 
+<!-- section_id: "d8970bad-168c-4f32-abad-5ac281b775e3" -->
 ### 4. GenerationPersona2 - Missing Tests
 
 **Existing Coverage**: 3 tests (collaborative generation, alternative approaches, independent verification)
@@ -106,6 +117,7 @@ This report identifies missing test coverage for the GAB product (gab.jsonld). W
 
 **Priority**: High - Generation is critical path, collaboration and flexibility are key
 
+<!-- section_id: "48450227-7a0c-46f5-bee3-66e9ca13b641" -->
 ### 5. Message Flow Tests - Missing Coverage
 
 **Existing Coverage**: 16 tests (mode transitions, actor interactions, state management)
@@ -125,6 +137,7 @@ This report identifies missing test coverage for the GAB product (gab.jsonld). W
 
 **Priority**: Medium - Important for system reliability but not critical path
 
+<!-- section_id: "e20c303f-b1c3-4913-a489-9792c233ce3d" -->
 ### 6. Agent Workflow Tests - Missing Coverage
 
 **Existing Coverage**: 11 tests (complete workflows, full agent execution, user perspective)
@@ -144,8 +157,10 @@ This report identifies missing test coverage for the GAB product (gab.jsonld). W
 
 **Priority**: High - End-to-end workflows are critical for system validation
 
+<!-- section_id: "a5fea6b7-a915-47e5-9e18-fcc9480e8b8e" -->
 ## Summary Statistics
 
+<!-- section_id: "6025b843-d792-4f07-9f9b-d0f07f330af2" -->
 ### Missing Tests by Category:
 
 - **Message Response Tests**: ~45 missing tests
@@ -154,11 +169,13 @@ This report identifies missing test coverage for the GAB product (gab.jsonld). W
 
 **Total Missing Tests**: ~65 tests
 
+<!-- section_id: "b3c5d1a9-7aef-45a9-8bf3-0034581bb950" -->
 ### Missing Tests by Priority:
 
 - **High Priority**: ~35 tests (Generation personas, critical workflows)
 - **Medium Priority**: ~30 tests (Debug mode, decision log, message flow)
 
+<!-- section_id: "e9383978-c1bb-47c7-b15a-3bac681a63f4" -->
 ### Missing Tests by Actor:
 
 - **DebugModeStateActor**: ~8 tests
@@ -168,6 +185,7 @@ This report identifies missing test coverage for the GAB product (gab.jsonld). W
 - **Message Flow**: ~10 tests
 - **Agent Workflow**: ~10 tests
 
+<!-- section_id: "ae0b38f9-7c4b-4635-8c18-e2ece4288e0f" -->
 ## Recommendations
 
 1. **Immediate Priority**: Generate tests for GenerationPersona1 and GenerationPersona2 - these are critical path actors with complex responsibilities
@@ -175,6 +193,7 @@ This report identifies missing test coverage for the GAB product (gab.jsonld). W
 3. **Medium Priority**: Complete coverage for DebugModeStateActor and DecisionLogStateActor
 4. **Ongoing**: Add tests as new responsibilities are added or existing ones are modified
 
+<!-- section_id: "9d1d1b7f-51bf-4598-8e3a-805baba62a29" -->
 ## Test Generation Strategy
 
 For each missing test, follow the balanced test suite structure:

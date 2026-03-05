@@ -1,9 +1,14 @@
+---
+resource_id: "e96b01c2-7a01-4614-b736-c92a06e0138f"
+---
 # AALang Probabilistic Turing Completeness Analysis
 
+<!-- section_id: "d9a3a1f5-92a6-4870-9d1a-d306ce09612e" -->
 ## Executive Summary
 
 **Conclusion**: AALang is a computational language with a unique LLM-based execution model. This analysis evaluates whether AALang meets Santos' formal definition of a probabilistic Turing machine. AALang exhibits non-deterministic behavior through LLM reasoning, but whether it strictly satisfies Santos' formal requirements depends on whether LLM probabilities can be formalized as transition probabilities that satisfy probability normalization and stay transition constraints. AALang programs executed by LLM agents can achieve computational capabilities, subject to practical limitations (context window constraints). File I/O provides unbounded persistent storage, significantly mitigating memory constraints, though active computation remains bounded by context window size.
 
+<!-- section_id: "99ff8488-4a8e-4d5d-ae0d-4779e06ace23" -->
 ## What is a Probabilistic Turing Machine?
 
 A **probabilistic Turing machine (PTM)** is an extension of classical Turing machines that incorporates probabilistic behavior. In his 1969 paper "Probabilistic Turing Machines and Computability," Santos defined a PTM as a tuple \( M = (Q, \Sigma, p) \), where:
@@ -23,6 +28,7 @@ The function \( p \) represents the conditional probability of the machine's nex
 
 Unlike deterministic Turing machines, which always produce the same output for a given input, probabilistic Turing machines can produce different outputs for the same input due to their probabilistic transitions.
 
+<!-- section_id: "3d131842-8cb6-430a-a651-62a92f494f93" -->
 ## AALang Architecture Overview
 
 AALang (Actor-based Agent Language) is fundamentally different from traditional programming languages:
@@ -34,8 +40,10 @@ AALang (Actor-based Agent Language) is fundamentally different from traditional 
 - **Communication**: Three-layer architecture (gossip-based P2P, local graph routing, internal reasoning)
 - **State Management**: Natural language text storage (context-window native)
 
+<!-- section_id: "e2c1b0d2-dc6b-43cf-8264-1bd7a0b7563f" -->
 ## Analysis: Does AALang Meet Santos' Probabilistic Turing Machine Definition?
 
+<!-- section_id: "be94497c-7520-4790-afa5-271715fb4c80" -->
 ### Mapping AALang to Santos' Formal Model
 
 To evaluate whether AALang is a probabilistic Turing machine according to Santos' definition, we must map AALang's components to Santos' formal model:
@@ -64,6 +72,7 @@ To evaluate whether AALang is a probabilistic Turing machine according to Santos
 - LLM reasoning produces different outputs probabilistically
 - However, these probabilities are implicit in the execution model, not explicitly defined in AALang's specification
 
+<!-- section_id: "19573ae2-b1e5-4133-9d14-df3b8a18f1d2" -->
 ### Requirement 1: Probability Normalization
 
 **Santos' Requirement:**
@@ -94,6 +103,7 @@ AALang's execution relies on LLM probabilities, but these probabilities are:
 
 **Verdict**: ⚠️ **Unclear** - LLMs have normalized probabilities, but AALang doesn't explicitly define a probability function \( p \) that satisfies Santos' normalization requirement. The requirement could potentially be satisfied if LLM token probabilities are formalized as transition probabilities, but this mapping is not currently defined.
 
+<!-- section_id: "34122edd-0031-432b-83ee-b4bf783a2d1f" -->
 ### Requirement 2: Stay Transition Constraint
 
 **Santos' Requirement:**
@@ -111,6 +121,7 @@ If the head stays in place (T), the state cannot change to a different state.
 
 **Verdict**: ⚠️ **Unclear** - AALang doesn't explicitly define head movements or the stay transition constraint. The requirement could potentially be satisfied if the execution model is formalized to map to Santos' head movements, but this mapping is not currently defined.
 
+<!-- section_id: "303a770d-9188-48a2-9c98-993ea76560db" -->
 ### Requirement 3: Unbounded Memory/Storage
 
 **Santos' Model:**
@@ -159,6 +170,7 @@ Probabilistic Turing machines require unbounded memory (infinite tape) for Turin
 
 **Verdict**: ✅ **Satisfies** (with file I/O) - File I/O provides unbounded persistent storage, satisfying the memory requirement for probabilistic Turing machines, though with practical limitations around access patterns and optional availability.
 
+<!-- section_id: "e7814146-95bc-45d0-acfb-ffc7ce44ae6d" -->
 ### Requirement 4: Conditional Branching
 
 **Santos' Model:**
@@ -179,6 +191,7 @@ Probabilistic Turing machines require conditional branching based on current sta
 
 **Verdict**: ✅ **Satisfies** - Conditional branching available through mode transitions and message interpretation, with probabilistic behavior through LLM reasoning.
 
+<!-- section_id: "cc730dca-0699-449c-bb7c-ecbd5e5074f5" -->
 ### Requirement 5: Loops/Iteration
 
 **Santos' Model:**
@@ -199,6 +212,7 @@ Probabilistic Turing machines require the ability to repeat operations (loops).
 
 **Verdict**: ✅ **Satisfies** - Loops can be simulated through mode transitions and message passing, with probabilistic behavior possible through LLM reasoning.
 
+<!-- section_id: "48d4be6b-fbf0-4245-8fb9-c7291b1f7146" -->
 ### Requirement 6: Basic Operations (Read, Write, Modify Memory)
 
 **Santos' Model:**
@@ -219,10 +233,12 @@ Probabilistic Turing machines require the ability to read, write, and modify mem
 
 **Verdict**: ✅ **Satisfies** - Read/write/modify operations available, though computation is LLM-mediated. Probabilistic behavior is inherent in LLM reasoning.
 
+<!-- section_id: "ce92ffc1-af1a-445e-bd49-cde78b7ce1f1" -->
 ## Critical Analysis: The Probability Function
 
 The key question is whether AALang defines a probability function \( p: Q \times \Sigma \times V \times Q \to [0, 1] \) that satisfies Santos' constraints.
 
+<!-- section_id: "0d03fe7a-fa3c-4719-bf93-b4893940d8d8" -->
 ### Current State
 
 **What AALang Has:**
@@ -238,6 +254,7 @@ The key question is whether AALang defines a probability function \( p: Q \times
 - Guarantee that probability normalization is satisfied
 - Guarantee that stay transition constraint is satisfied
 
+<!-- section_id: "7afe6333-10fb-440e-9dea-982d27bdebd5" -->
 ### Can AALang Be Formalized as a Probabilistic Turing Machine?
 
 **Potential Formalization:**
@@ -270,8 +287,10 @@ The key question is whether AALang defines a probability function \( p: Q \times
 - No explicit mechanism to ensure probability normalization
 - No explicit mechanism to ensure stay transition constraint
 
+<!-- section_id: "3767f1a5-80ae-4880-bd13-7b0dd02f4f1b" -->
 ## Conclusion
 
+<!-- section_id: "ac50edf1-bc66-41ce-8c29-ca6b15d0d125" -->
 ### Is AALang a Probabilistic Turing Machine According to Santos' Definition?
 
 **Short Answer**: AALang exhibits non-deterministic behavior that could potentially be formalized as a probabilistic Turing machine, but it does not currently meet Santos' formal definition because it lacks an explicit probability function \( p \) that satisfies Santos' constraints (probability normalization and stay transition constraint).
@@ -305,6 +324,7 @@ The key question is whether AALang defines a probability function \( p: Q \times
    - However, the formalization is not currently part of AALang's specification
    - AALang is designed for agent orchestration, not as a formal probabilistic Turing machine
 
+<!-- section_id: "1ef5a790-8bdc-4f48-93b3-932750bd5505" -->
 ### Final Verdict
 
 AALang **exhibits non-deterministic behavior** that is compatible with probabilistic computation models, but it **does not currently meet Santos' formal definition** of a probabilistic Turing machine because:
@@ -322,6 +342,7 @@ For practical purposes, AALang's non-deterministic behavior makes it suitable fo
 
 ---
 
+<!-- section_id: "7a5a78e9-f2f1-4189-86a7-7a9b9a26cbaf" -->
 ## References
 
 - AALang Design Specification (`aalang-design.jsonld`)
